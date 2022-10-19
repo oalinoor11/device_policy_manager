@@ -70,4 +70,15 @@ class DevicePolicyManager {
       rethrow;
     }
   }
+  static Future<void> disableCamera() async {
+    try {
+      if (isEnabled) {
+        devicePolicyManager.setCameraDisabled(adminComponent, false); // Enable camera.
+      } else {
+        devicePolicyManager.setCameraDisabled(adminComponent, true); // Disable camera.
+      }
+    } catch (SecurityException securityException) {
+    Log.i("Device Administrator", "Error occurred while disabling/enabling camera - " + securityException.getMessage());
+    }
+  }
 }
